@@ -1,0 +1,61 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { whatsappUrl } from '../data/site';
+---
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Ansar Clinic, home">
+      <img src="/assets/img/round_logo_with_name_flatten.svg" width="168" height="38" alt="Ansar Clinic" />
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main menu" data-open="false">
+      <ul>
+        <li><a href="/#ilaaj">Problems</a></li>
+        <li><a href="/#prakriya">Process</a></li>
+        <li><a href="/#dawaen">Dawa</a></li>
+        <li><a href="/#about">Dawakhana</a></li>
+        <li><a href="/#sawal">FAQ</a></li>
+        <li><a href="/#contacts">Contact</a></li>
+      </ul>
+      <a class="btn btn-wa" href={whatsappUrl}>
+        <WhatsAppIcon /> WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if (toggle && nav) {
+    const set = (open: boolean) => {
+      nav.dataset.open = String(open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => set(nav.dataset.open !== 'true'));
+    nav.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) set(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') set(false);
+    });
+  }
+
+  // Active-section highlight
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav a[href^="/#"]'));
+  const map = new Map(links.map((l) => [l.getAttribute('href')!.slice(2), l]));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((l) => l.classList.remove('active'));
+        const match = map.get(e.target.id);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  map.forEach((_, id) => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+</script>

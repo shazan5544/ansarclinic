@@ -1,0 +1,26 @@
+---
+import PolicyPage from '../components/PolicyPage.astro';
+---
+
+<PolicyPage
+  title="Payment & Refund Policy"
+  path="payment-refund-policy.html"
+  sections={[
+    { heading: 'Payment Policy', blocks: [[
+      'We accept secure online payments via UPI, Debit Card, Credit Card, Net Banking, and Wallets.',
+      'All payments must be made in full at the time of placing the order.',
+      'Once payment is received, you will receive an order confirmation via email/WhatsApp.',
+    ]] },
+    { heading: 'Refund &amp; Return Policy', blocks: [
+      'We strive to ensure you are satisfied with your purchase. However, if you receive a damaged, defective, or incorrect product, you may request a return or replacement.',
+      'Refunds are only applicable if:',
+      ['The product is damaged during transit.', 'You receive the wrong item.', 'The item is not delivered within 15 business days of the promised timeline.'],
+      'To request a refund or replacement, you must contact us within 72 hours of receiving the product with photo/video proof.',
+    ] },
+    { heading: 'Refund Process', blocks: [[
+      'Once your request is approved, refunds will be initiated to your original payment method.',
+      'Refunds may take 5\u20137 business days to reflect, depending on your bank/payment provider.',
+      'If replacement is preferred, we will ship the new product at no extra cost.',
+    ]] },
+  ]}
+/>

@@ -1,0 +1,64 @@
+---
+import PolicyPage from '../components/PolicyPage.astro';
+---
+
+<PolicyPage
+  title="Terms and Conditions"
+  path="terms-and-conditions.html"
+  intro={[
+    'Welcome to Ansar Clinic ("we", "our", or "us"). These Terms and Conditions ("Terms") govern your use of our website www.ansarcliniconline.com (the "Site") and the services offered through it, including online consultations, treatment of men\u2019s sexual health concerns, and the sale of Ayurvedic medicines.',
+    'By accessing or using the Site, you accept these Terms. If you do not agree, please do not use the Site.',
+  ]}
+  sections={[
+    { heading: 'Medical Disclaimer', blocks: [[
+      'All content on the Site is provided for general health awareness and educational purposes only.',
+      'Our services focus on Ayurvedic support for men\u2019s sexual wellness, including premature ejaculation, erectile dysfunction, nightfall, spermatorrhea, and related concerns.',
+      'Nothing on the Site replaces professional medical advice, diagnosis, or treatment.',
+      'Always consult a qualified doctor before starting any medicine or treatment.',
+    ]] },
+    { heading: 'Eligibility', blocks: [
+      'You must be 18 years or older to access or use the Site.',
+      'By using the Site, you confirm that you meet this requirement.',
+    ] },
+    { heading: 'Services Provided', blocks: [
+      'Ansar Clinic provides the following services through the Site:',
+      ['Online Ayurvedic health consultations (with a focus on men\u2019s sexual health)', 'Sale and home delivery of authentic Ayurvedic medicines', 'Health information and awareness content'],
+      'We reserve the right to update, modify, or discontinue any service at our sole discretion.',
+    ] },
+    { heading: 'Use of the Site', blocks: [
+      'You agree to use the Site for lawful purposes only. You must not:',
+      ['Violate any applicable laws or regulations', 'Provide false or misleading information during consultations or purchases', 'Transmit any harmful software, viruses, or disruptive content', 'Interfere with the Site\u2019s functionality or security'],
+      'Unauthorized use may result in suspension of your access or legal action.',
+    ] },
+    { heading: 'Purchasing Products', blocks: [[
+      'Our Ayurvedic medicines are sold for personal use only.',
+      'Product descriptions, images, and pricing may change without prior notice.',
+      'Orders are processed only after payment confirmation, unless cash-on-delivery applies.',
+      'Delivery typically takes 3 to 7 business days across India but may vary by location.',
+      'Some products may require mandatory consultation before purchase.',
+    ]] },
+    { heading: 'Payment Terms', blocks: [[
+      'We accept online payments and cash on delivery (COD) in eligible areas.',
+      'Payments are non-refundable unless the product is defective, damaged, or incorrectly delivered.',
+      'Refund requests must be made within 72 hours of receiving the product, supported by valid proof.',
+    ]] },
+    { heading: 'Intellectual Property', blocks: [
+      'All content on the Site, including text, graphics, images, and logos, is the exclusive property of Ansar Clinic or its licensors.',
+      'You may not copy, reproduce, distribute, or create derivative works from any content without our written permission.',
+    ] },
+    { heading: 'Limitation of Liability', blocks: [[
+      'The Site and services are provided "as is" without warranties of any kind.',
+      'We do not guarantee uninterrupted access, error-free operation, or specific results from our products or services.',
+      'Ansar Clinic is not liable for any direct, indirect, incidental, or consequential damages arising from your use of the Site or services.',
+    ]] },
+    { heading: 'Indemnification', blocks: [
+      'You agree to indemnify, defend, and hold harmless Ansar Clinic, its employees, affiliates, and partners from any claims, damages, losses, or legal expenses resulting from your violation of these Terms or misuse of the Site.',
+    ] },
+    { heading: 'Modifications to Terms', blocks: [
+      'We may update these Terms at any time. Changes become effective upon posting on the Site. Continued use of the Site after updates indicates your acceptance of the revised Terms.',
+    ] },
+    { heading: 'Governing Law', blocks: [
+      'These Terms are governed by the laws of India. Any disputes will be subject to the jurisdiction of courts located in India.',
+    ] },
+  ]}
+/>

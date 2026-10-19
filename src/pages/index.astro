@@ -1,0 +1,322 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { site, whatsappUrl, telUrl } from '../data/site';
+
+const conditions = [
+  {
+    en: 'Premature Ejaculation',
+    hi: 'Shighrapatan (Jaldi Girna)',
+    desc: 'Aap control se pehle hi bahar aa jaate ho, aur partner ko satisfaction nahi mil paata. Ye mardon ki sabse common problem hai, tension, kamzori ya purani aadat iski wajah ban sakti hai. Hamari dawa se timing aur control dono sudhar jaate hain.',
+  },
+  {
+    en: 'Erectile Dysfunction',
+    hi: 'Dheela Pan (Khada na Hona)',
+    desc: 'Utejna hone par bhi ling me sahi sakhti nahi aati, ya beech me hi dheela ho jaata hai. Stress, thakaan, sugar/BP ya umar iski wajah ho sakti hai. Dawa se khoon ka flow aur sakhti dono behtar hote hain.',
+  },
+  {
+    en: 'Nightfall',
+    hi: 'Swapnadosh (Neend me Girna)',
+    desc: 'Neend me apne aap virya gir jaata hai, aapko pata bhi nahi chalta. Kabhi-kabhar hona normal hai, par roz-roz hone par kamzori badhne lagti hai. Sahi ilaaj se is par kaboo paaya ja sakta hai.',
+  },
+  {
+    en: 'Spermatorrhea',
+    hi: 'Dhaat Rog (Virya Behna)',
+    desc: 'Bina kisi kaam ke, peshab ke saath ya halki si utejna par hi virya beh jaata hai. Isse shareer me kamzori, kamar dard aur thakaan rehti hai. Ye virya ki kamzori ka ilaaj hai.',
+  },
+];
+
+const strip = [
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>', count: 40, suffix: '+', label: 'Saal ka Anubhav' },
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.5 8.5 0 0 1-1.6-.15L5 21l1.2-4.5A8.5 8.5 0 1 1 21 11.5z"/></svg>', count: 100, suffix: '%', label: 'Private Consultation' },
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>', count: 100, suffix: '%', label: 'Gopniya Packing' },
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></svg>', count: 24, suffix: '/7', label: 'Ghar tak Delivery' },
+];
+
+const steps = [
+  { t: 'WhatsApp par Message Karein', d: 'Apni problem likh kar bhejein. Aapki baat 100% private rahegi, kisi aur ko pata nahi chalega.' },
+  { t: 'Doctor Aapki Baat Sunenge', d: 'Umar, sehat aur problem kab se hai, sab samajh kar doctor uski jad tak pahunchte hain.' },
+  { t: 'Aapke Liye Dawa Banti Hai', d: 'Asli jadi-bootiyon (herbs) se bani dawa, clinic ki apni packing aur label ke saath.' },
+  { t: 'Secret Packing me Ghar Aati Hai', d: 'Packet par na koi naam, na bimari ki jankari, ghar me kisi ko pata nahi chalega.' },
+];
+
+const benefits = [
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>', t: 'Timing aur Control', d: 'Premature ejaculation me timing badhati hai, control deti hai.' },
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg>', t: 'Sakhti aur Blood Flow', d: 'Erectile dysfunction me khada pan aur khoon ka flow behtar karti hai.' },
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6.5 7 6.5 12.3a6.5 6.5 0 0 1-13 0C5.5 9.7 12 2.7 12 2.7z"/></svg>', t: 'Virya ki Quality', d: 'Nightfall aur dhaat rog me virya ka count aur quality sudharti hai.' },
+  { icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/></svg>', t: 'Kamzori Door, Taqat Wapas', d: 'Shareer me taqat, stamina aur confidence laati hai.' },
+];
+
+const testimonials = [
+  { q: '4 saal se shighrapatan ki problem thi. Doctor se baat karke dawa li, 3 hafte me kaafi farak dikhne laga. Ab bahut better hai.', name: 'Rahul', meta: '34 saal, Delhi' },
+  { q: 'Dheela pan ki wajah se shaadi ki tension thi. Dawa ke baad confidence wapas aa gaya, packing bhi aisi thi ki ghar me kisi ko pata nahi chala.', name: 'Amit', meta: '41 saal, Mumbai' },
+  { q: 'Swapnadosh aur kamzori se pareshan tha. Doctor ne bahut ache se suna aur sahi dawa di, ab problem khatam ho gayi.', name: 'Sandeep', meta: '27 saal, Jaipur' },
+  { q: 'Dhaat rog se bahut kamzori aa gayi thi, kaam me man nahi lagta tha. Dawa lene ke baad taqat wapas aa gayi, ab fresh feel hota hai.', name: 'Vikash', meta: '30 saal, Lucknow' },
+  { q: 'Shadi ke baad timing ki problem thi, wife se baat nahi kar pa raha tha. Doctor ki dawa se sab theek ho gaya, ab relation bahut better hai.', name: 'Rohit', meta: '29 saal, Patna' },
+];
+
+const faqs = [
+  { q: 'Kya ilaaj ke liye clinic aana zaroori hai?', a: 'Nahi. Aap WhatsApp ya phone par doctor se baat kar sakte hain aur dawa ghar mangwa sakte hain. Chahein to direct bhi aa sakte hain, bas pehle call kar ke time pooch lein.' },
+  { q: 'Kya meri jankari private rahegi?', a: 'Haan, 100%. Aapki baat sirf ilaaj ke liye use hoti hai. Dawa aisi packing me bheji jaati hai jis par kuch nahi likha hota, aur hum aapki jankari kisi ko nahi bechte. Detail Privacy Policy me hai.' },
+  { q: 'Dawa ka asar kitne din me dikhega?', a: 'Har insaan me alag hota hai, problem, umar aur sehat ke hisaab se. Doctor consultation me aapko sahi andaza bata denge. Koi bhi dawa pakke result ki guarantee nahi deti.' },
+  { q: 'Mujhe sugar/BP hai, kya dawa le sakta hoon?', a: 'Doctor ko apni saari dawaiyan aur bimariyan pehle bata dein. Kai baar inhi ki wajah se sex problem hoti hai, isliye sahi jankari dena bahut zaroori hai.' },
+  { q: 'Payment aur delivery kaise hoti hai?', a: 'Hum pure India me dawa ghar tak pahunchate hain, chune hue ilaakon me Cash on Delivery bhi available hai. Aapke shehar ke liye time aur payment ka tarika doctor ya WhatsApp par bata diya jayega. Rules Shipping aur Payment Policy me hain.' },
+  { q: 'Kya 18 se kam umar wale ilaaj le sakte hain?', a: 'Hamari online services sirf 18 saal ya usse zyada umar ke logon ke liye hain.' },
+];
+
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Ansar Clinic Online', url: site.url },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalBusiness',
+    name: 'Ansar Clinic',
+    description: "Mardon ki sex problems ka Ayurvedic aur Unani ilaaj, premature ejaculation, erectile dysfunction, nightfall aur dhaat rog",
+    url: site.url,
+    telephone: site.phoneRaw,
+    email: site.email,
+    foundingDate: '1985',
+    image: `${site.url}/assets/img/og-image.png`,
+    sameAs: [site.facebook, site.instagram],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Layout canonical={`${site.url}/`}>
+  {jsonLd.map((d) => <script slot="head" type="application/ld+json" set:html={JSON.stringify(d)} />)}
+
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Mardon ki <span class="hl">Sex Problems</span> ka Desi Ayurvedic Ilaaj, 100% Private</h1>
+        <p class="lede">
+          Premature ejaculation, erectile dysfunction, nightfall aur dhaat rog, ye sab problems ka ilaaj bina kisi ko bataye, seedha aapke ghar par. Pehle doctor se baat karein, phir aapki problem ke hisaab se dawa banegi.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-wa" href={whatsappUrl}><WhatsAppIcon /> WhatsApp par Doctor se Baat Karein</a>
+        </div>
+      </div>
+      <figure>
+        <img src="/assets/img/ansarClinicImage.webp" width="520" height="510" alt="Ansar Clinic dawakhana" fetchpriority="high" />
+        <figcaption class="hero-stats">
+          <div><strong>40+</strong><span>Saal ka Anubhav</span></div>
+          <div><strong>100%</strong><span>Private Consultation</span></div>
+          <div><strong>1985</strong><span>Se Bharosemand</span></div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <ul>
+        {strip.map((s) => (
+          <li>
+            <span class="strip-icon" set:html={s.icon} />
+            <strong><span class="counter" data-count={s.count} data-suffix={s.suffix}>0</span></strong>
+            <span class="lbl">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <section class="section" id="ilaaj">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Kaunsi Problems ka Ilaaj Karte Hain</h2>
+        <p>Ye chaaron problems mardon me bahut common hain. Inhe chhupane ki zaroorat nahi, sahi time par doctor se baat karna hi asli ilaaj hai.</p>
+      </div>
+      <div class="conditions">
+        {conditions.map((c) => (
+          <article class="label condition">
+            <div class="label-band">{c.en}</div>
+            <div class="label-body">
+              <h3>{c.hi}</h3>
+              <p>{c.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="more-note">Virya ki kami (low sperm count), dhaat, kamzori aur mardon ki dusri problems ke liye bhi doctor se salah le sakte hain.</p>
+    </div>
+  </section>
+
+  <section class="section band-alt" id="prakriya">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Ilaaj Kaise Hota Hai</h2>
+        <p>Clinic aaye bina, chaar aasan kadmon me.</p>
+      </div>
+      <ol class="steps">
+        {steps.map((s) => (
+          <li>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="dawaen">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Hum Kaunsi Dawa Dete Hain</h2>
+        <p>Har jar par clinic ka naam, doctor ka naam, registration number aur QR code hota hai. Kaunsi dawa aapke liye sahi rahegi, ye doctor aapki problem dekh kar decide karte hain.</p>
+      </div>
+      <div class="products-main">
+        <img src="/assets/img/product/Course-No-6.webp" width="960" height="479" alt="Ansar Clinic ki dawa ke jars: M2, C2, C5 aur T1 label ke saath" loading="lazy" />
+      </div>
+      <div class="products-row">
+        <img src="/assets/img/product/M2.webp" width="960" height="480" alt="M2 jar, Ansar Clinic ke label ke saath" loading="lazy" />
+        <img src="/assets/img/product/C3.webp" width="960" height="480" alt="C3 jar, Ansar Clinic ke label ke saath" loading="lazy" />
+        <img src="/assets/img/product/C4-cap.webp" width="960" height="480" alt="C4 capsule ka jar" loading="lazy" />
+        <img src="/assets/img/product/C5-cap.webp" width="960" height="480" alt="C5 capsule ka jar" loading="lazy" />
+      </div>
+      <p class="product-note">Hamari dawai asli jadi-bootiyon (herbs) se bani hoti hai, isme koi chemicals ya side effects nahi hote.</p>
+      <ul class="benefits">
+        {benefits.map((b) => (
+          <li><span class="b-icon" set:html={b.icon} /><div><strong>{b.t}</strong><br /><span>{b.d}</span></div></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section band-alt" id="about">
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <h2>Hamaara Dawakhana</h2>
+        <p style="margin-top:1rem">Ansar Clinic ek Ayurvedic aur Unani dawakhana hai, jo 40 saal se zyada samay se mardon ki sex problems aur kamzori ka ilaaj kar raha hai.</p>
+        <p>Hamara manna hai ki har bimari ka ilaaj uski jad samajh kar hona chahiye. Isliye doctor har mareez ki umar, shareer ki banawat aur problem dekh kar hi dawa banate hain, aur dawa asli jadi-bootiyon se taiyaar hoti hai.</p>
+        <div class="doctor-card">
+          <span class="avatar">AG</span>
+          <div class="doc-info">
+            <strong>{site.doctor}</strong>
+            <span>Registered No. {site.regNo}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Mareezon ki Zubaani</h2>
+        <p>Jo log pehle ilaaj le chuke hain, unke apne shabd.</p>
+      </div>
+      <div class="t-carousel">
+        <div class="t-track" id="tTrack">
+          {testimonials.map((t) => (
+            <figure class="t-card">
+              <blockquote>{t.q}</blockquote>
+              <figcaption><strong>{t.name}</strong><span>{t.meta}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="t-nav">
+          <button class="t-btn" type="button" data-dir="-1" aria-label="Pichhla">‹</button>
+          <button class="t-btn" type="button" data-dir="1" aria-label="Agla">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band-alt" id="sawal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Common Sawal-Jawab</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contacts">
+    <div class="wrap contact-grid">
+      <div class="intro">
+        <h2>Apni Problem ke Baare me Doctor se Baat Karein</h2>
+        <p>WhatsApp par apni problem likhein ya seedha call karein. Aapki har baat 100% private rahegi.</p>
+        <div class="hero-actions">
+          <a class="btn btn-wa" href={whatsappUrl}><WhatsAppIcon /> WhatsApp Karein</a>
+        </div>
+      </div>
+      <div class="contact-visual">
+        <ul class="contact-list">
+          <li>
+            <a href={telUrl}>
+              <span class="k"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <span class="ct"><strong>Phone</strong><span class="v">{site.phoneDisplay}</span></span>
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${site.email}`}>
+              <span class="k"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+              <span class="ct"><strong>Email</strong><span class="v">{site.email}</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Animated counters in the trust strip
+  const counters = document.querySelectorAll<HTMLElement>('.counter');
+  const runCounter = (el: HTMLElement) => {
+    const target = Number(el.dataset.count || '0');
+    const suffix = el.dataset.suffix || '';
+    const dur = 1200;
+    const start = performance.now();
+    const tick = (t: number) => {
+      const p = Math.min((t - start) / dur, 1);
+      el.textContent = Math.floor(p * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { runCounter(e.target as HTMLElement); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  counters.forEach((c) => io.observe(c));
+
+  // Testimonials carousel
+  const track = document.getElementById('tTrack');
+  if (track) {
+    document.querySelectorAll<HTMLElement>('.t-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = track.querySelector<HTMLElement>('.t-card');
+        const step = card ? card.getBoundingClientRect().width + 16 : 320;
+        track.scrollBy({ left: Number(btn.dataset.dir) * step, behavior: 'smooth' });
+      });
+    });
+  }
+
+  // FAQ: one open at a time
+  const faqItems = document.querySelectorAll<HTMLElement>('.faq details');
+  faqItems.forEach((d) => {
+    d.addEventListener('toggle', () => {
+      if ((d as HTMLDetailsElement).open) {
+        faqItems.forEach((o) => { if (o !== d) (o as HTMLDetailsElement).open = false; });
+      }
+    });
+  });
+</script>

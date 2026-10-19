@@ -1,0 +1,34 @@
+---
+import PolicyPage from '../components/PolicyPage.astro';
+---
+
+<PolicyPage
+  title="Shipping & Delivery Policy"
+  path="shipping-delivery-policy.html"
+  intro={['At Ansar Clinic, we aim to deliver your order as quickly and safely as possible. Please read our shipping and delivery terms carefully:']}
+  sections={[
+    { heading: 'Processing Time', blocks: [[
+      'All orders are processed within 1\u20132 business days (excluding weekends and public holidays).',
+      'You will receive a confirmation message with tracking details once your order has been shipped.',
+    ]] },
+    { heading: 'Shipping Time', blocks: [[
+      'Standard delivery time is 3\u20137 business days, depending on your location and courier service availability.',
+      'Delivery timelines may vary slightly during holidays, festive seasons, or due to unforeseen courier delays.',
+    ]] },
+    { heading: 'Shipping Charges', blocks: [[
+      'Shipping charges will be calculated and shown at checkout.',
+      'We may offer free shipping on orders above a certain value.',
+    ]] },
+    { heading: 'Tracking Your Order', blocks: [
+      'Once your order has been dispatched, you will receive a tracking ID via WhatsApp to follow your shipment.',
+    ] },
+    { heading: 'Delivery Attempts', blocks: [[
+      'Our courier partners will attempt delivery to your provided address.',
+      'If you are unavailable, the courier may reattempt delivery or contact you to reschedule.',
+    ]] },
+    { heading: 'Delays &amp; Issues', blocks: [[
+      'While we strive for timely delivery, delays may occur due to factors beyond our control (such as weather, courier delays, or local restrictions).',
+      'If your order has not arrived within 10 business days, please contact our support team for assistance.',
+    ]] },
+  ]}
+/>

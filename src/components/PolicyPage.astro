@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  path: string;
+  intro?: (string | string[])[];
+  sections: { heading: string; blocks: (string | string[])[] }[];
+  outro?: string[];
+}
+const { title, path, intro = [], sections, outro = [] } = Astro.props;
+---
+
+<Layout canonical={`${site.url}/${path}`} title={`${title} | Ansar Clinic`} description={`${title} of Ansar Clinic.`} lang="en-IN">
+  <article class="policy">
+    <div class="wrap">
+      <div class="policy-body">
+        <h1>{title}</h1>
+        {intro.map((b) => (Array.isArray(b) ? <ul>{b.map((i) => <li set:html={i} />)}</ul> : <p set:html={b} />))}
+        {sections.map((s) => (
+          <section>
+            <h2 set:html={s.heading} />
+            {s.blocks.map((b) => (Array.isArray(b) ? <ul>{b.map((i) => <li set:html={i} />)}</ul> : <p set:html={b} />))}
+          </section>
+        ))}
+        {outro.map((b) => <p set:html={b} />)}
+      </div>
+    </div>
+  </article>
+</Layout>
